@@ -17,43 +17,46 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion.text,
-            style: const TextStyle(
-              color: Colors.white,
+      child: Container(
+        margin: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.text,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 30),
-          //? the '...'(spread) operator is used for spreading elements of an iterable ( a list)
-          //? or for spreading the key-value pairs of a map.
-          //? It's a concise way to include the elements of one collection into another.
-          //* Dynamically generated buttons
-          ...currentQuestion.answers.map(
-            (answer) {
+            const SizedBox(height: 30),
+            //? the '...'(spread) operator is used for spreading elements of an iterable ( a list)
+            //? or for spreading the key-value pairs of a map.
+            //? It's a concise way to include the elements of one collection into another.
+            //* Dynamically generated buttons
+            ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(answerText: answer, onTap: () {});
-            },
-          ),
-          //* Hard Coded Buttons
-          // AnswerButton(
-          //   answerText: currentQuestion.answers[0],
-          //   onTap: () {},
-          // ),
-          // AnswerButton(
-          //   answerText: currentQuestion.answers[1],
-          //   onTap: () {},
-          // ),
-          // AnswerButton(
-          //   answerText: currentQuestion.answers[2],
-          //   onTap: () {},
-          // ),
-          // AnswerButton(
-          //   answerText: currentQuestion.answers[3],
-          //   onTap: () {},
-          // ),
-        ],
+            }),
+            //* Hard Coded Buttons
+            // AnswerButton(
+            //   answerText: currentQuestion.answers[0],
+            //   onTap: () {},
+            // ),
+            // AnswerButton(
+            //   answerText: currentQuestion.answers[1],
+            //   onTap: () {},
+            // ),
+            // AnswerButton(
+            //   answerText: currentQuestion.answers[2],
+            //   onTap: () {},
+            // ),
+            // AnswerButton(
+            //   answerText: currentQuestion.answers[3],
+            //   onTap: () {},
+            // ),
+          ],
+        ),
       ),
     );
   }
