@@ -12,6 +12,8 @@ class Quiz extends StatefulWidget {
   }
 }
 
+//* Using _ means that the class is private ie it will only be usable in this file.
+//* Even if we import in other file will no be able to use it.
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
 
@@ -39,6 +41,7 @@ class _QuizState extends State<Quiz> {
       activeScreen = 'questions-screen';
     });
   }
+
 
   @override
   Widget build(context) {
