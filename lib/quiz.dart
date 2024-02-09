@@ -17,20 +17,27 @@ class _QuizState extends State<Quiz> {
 
   //Widget? activeScreen;     //* '?' tells dart that variable may contain a widget or null
   var activeScreen = 'start-screen';
+
   void switchScreen() {
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
-   void chooseAnswer(String answer){
+  void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
-
     if (selectedAnswers.length == questions.length) {
       setState(() {
         activeScreen = 'results-screen';
       });
     }
+  }
+
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = 'questions-screen';
+    });
   }
 
   @override
@@ -45,12 +52,10 @@ class _QuizState extends State<Quiz> {
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     }
-    
+
     if (activeScreen == 'results-screen') {
-      screenWidget = ResultsScreen(chosenAnswers: selectedAnswers,);
+      screenWidget = ResultsScreen(chosenAnswers: selectedAnswers, onRestart: restartQuiz,);
     }
- 
-    
 
     return MaterialApp(
       home: Scaffold(

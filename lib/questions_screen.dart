@@ -64,18 +64,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             //   answerText: currentQuestion.answers[0],
             //   onTap: () {},
             // ),
-            // AnswerButton(
-            //   answerText: currentQuestion.answers[1],
-            //   onTap: () {},
-            // ),
-            // AnswerButton(
-            //   answerText: currentQuestion.answers[2],
-            //   onTap: () {},
-            // ),
-            // AnswerButton(
-            //   answerText: currentQuestion.answers[3],
-            //   onTap: () {},
-            // ),
           ],
         ),
       ),
