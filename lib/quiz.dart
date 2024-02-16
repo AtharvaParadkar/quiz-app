@@ -15,22 +15,23 @@ class Quiz extends StatefulWidget {
 //* Using _ means that the class is private ie it will only be usable in this file.
 //* Even if we import in other file will no be able to use it.
 class _QuizState extends State<Quiz> {
-  List<String> selectedAnswers = [];
+  List<String> _selectedAnswers = [];
 
   //Widget? activeScreen;     //* '?' tells dart that variable may contain a widget or null
-  var activeScreen = 'start-screen';
+  var _activeScreen = 'start-screen';
 
-  void switchScreen() {
+  void _switchScreen() {
     setState(() {
-      activeScreen = 'questions-screen';
+      _activeScreen = 'questions-screen';
     });
   }
 
-  void chooseAnswer(String answer) {
-    selectedAnswers.add(answer);
-    if (selectedAnswers.length == questions.length) {
+  void _chooseAnswer(String answer) {
+    _selectedAnswers.add(answer);
+    
+    if (_selectedAnswers.length == questions.length) {
       setState(() {
-        activeScreen = 'results-screen';
+        _activeScreen = 'results-screen';
       });
     }
   }
@@ -38,7 +39,7 @@ class _QuizState extends State<Quiz> {
   void restartQuiz() {
     setState(() {
       selectedAnswers = [];
-      activeScreen = 'questions-screen';
+      _activeScreen = 'questions-screen';
     });
   }
 
@@ -50,14 +51,14 @@ class _QuizState extends State<Quiz> {
     //\                  ? StartScreen(switchScreen)         // Value used, if condition is met
     //                  : const QuestionsScreen();          // Value used, if condition is not met
 
-    Widget screenWidget = StartScreen(switchScreen);
+    Widget screenWidget = StartScreen(_switchScreen);
 
-    if (activeScreen == 'questions-screen') {
-      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    if (_activeScreen == 'questions-screen') {
+      screenWidget = QuestionsScreen(onSelectAnswer: _chooseAnswer);
     }
 
-    if (activeScreen == 'results-screen') {
-      screenWidget = ResultsScreen(chosenAnswers: selectedAnswers, onRestart: restartQuiz,);
+    if (_activeScreen == 'results-screen') {
+      screenWidget = ResultsScreen(chosenAnswers: _selectedAnswers, onRestart: restartQuiz,);
     }
 
     return MaterialApp(
